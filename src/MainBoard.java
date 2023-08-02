@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class MainBoard extends JPanel implements ActionListener {
+
     private final int SIZE = 320;
     private final int PIXEL_SIZE = 16;
     private final int PIXEL_ALL = 400;

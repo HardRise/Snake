@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 public class StartWindow extends JFrame {
+
     /**
      * Initializing a window of our game
      */
