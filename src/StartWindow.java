@@ -1,6 +1,9 @@
 import javax.swing.*;
 
 public class StartWindow extends JFrame {
+    /**
+     * Initializing a window of our game
+     */
     public StartWindow() {
         setTitle("Змейка");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

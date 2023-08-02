@@ -27,7 +27,10 @@ public class MainBoard extends JPanel implements ActionListener {
     private int snake;
     private int xFruit;
     private int yFruit;
-
+    /**
+     * Initializing of details of the game to make our snake moving
+     * and add module of processing keyboard signals
+     */
     public MainBoard() {
         setBackground(Color.white);
         loadImages();
@@ -35,7 +38,9 @@ public class MainBoard extends JPanel implements ActionListener {
         addKeyListener(new KeyAdapt());
         setFocusable(true);
     }
-
+    /**
+     * Images loading fruit and part of snake
+     */
     private void loadImages() {
         ImageIcon snakeIm = new ImageIcon("snake.png");
         pixel = snakeIm.getImage();
@@ -43,7 +48,9 @@ public class MainBoard extends JPanel implements ActionListener {
         fruit = fruitIm.getImage();
 
     }
-
+    /**
+     * Init of first start of game
+     */
     private void initGame() {
         snake = 3;
         for (int i = 0; i < snake; i++) {
@@ -54,12 +61,16 @@ public class MainBoard extends JPanel implements ActionListener {
         timer.start();
         generateFruit();
     }
-
+    /**
+     * Initializing of fruits
+     */
     private void generateFruit() {
         xFruit = new Random().nextInt(20) * PIXEL_SIZE;
         yFruit = new Random().nextInt(20) * PIXEL_SIZE;
     }
-
+    /**
+     * Images painting and the end of the game
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -74,7 +85,9 @@ public class MainBoard extends JPanel implements ActionListener {
             g.drawString("Game over", 96, SIZE/2/2);
         }
     }
-
+    /**
+     * Left, right, up and down movements
+     */
     private void move() {
         for (int i = snake; i > 0; i--) {
             xSnake[i] = xSnake[i - 1];
@@ -93,7 +106,9 @@ public class MainBoard extends JPanel implements ActionListener {
             ySnake[0] -= PIXEL_SIZE;
         }
     }
-
+    /**
+     * Actions of the snake
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
@@ -103,7 +118,9 @@ public class MainBoard extends JPanel implements ActionListener {
         }
         repaint();
     }
-
+    /**
+     * Check the contact with border
+     */
     private void checkEdge() {
         for (int i = snake; i > 0; i--) {
             if (i > 4 && xSnake[0] == xSnake[i] && ySnake[0] == ySnake[i]) {
@@ -114,7 +131,9 @@ public class MainBoard extends JPanel implements ActionListener {
         moveCrossBorder(xSnake);
         moveCrossBorder(ySnake);
     }
-
+    /**
+     * Border crossed movement
+     */
     private void moveCrossBorder(int[] snakeP) {
         if (snakeP[0] > SIZE) {
             for (int i = 0; i < snake; i++) {
@@ -127,14 +146,18 @@ public class MainBoard extends JPanel implements ActionListener {
             }
         }
     }
-
+    /**
+     * Snake extension by eating fruit
+     */
     private void eatFruit() {
         if (xSnake[0] == xFruit && ySnake[0] == yFruit) {
             snake++;
             generateFruit();
         }
     }
-
+    /**
+     * Processing keyboard signals
+     */
     public class KeyAdapt extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
